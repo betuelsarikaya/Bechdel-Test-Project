@@ -1,8 +1,21 @@
-# Lede Project - Dogs in NYC
-### This is my first project for LEDE 2025
+## The Bechdel Test
 
-The goal of this project is to explore the world of dogs in New York City. Specifically, I wanted to find out how many dogs live in the city, which breeds are popular in which neighborhoods, and what the most common dog names are.
+This Lede Project is about the Bechdel Test. 
 
-### Data Source
+It's a simple rule to assess the representation of women in movies. 
 
-The data for this project comes from **NYC Open Data** and can be found [here](https://data.cityofnewyork.us/Health/NYC-Dog-Licensing-Dataset/nu7n-tubp/about_data).
+I'm going to use the following API:
+https://bechdeltest.com/api/v1/doc
+
+and also data from IMDB (https://datasets.imdbws.com/). 
+- name.basics.tsv.gz and title.ratings.tsv.gz
+
+
+I found a few different ways of analyzing movies and using different APIs online, like:
+- DataForGoodFR, BechdelAi (https://github.com/dataforgoodfr/bechdelai/blob/main/tutorials/1.%20Fetching%20data%20from%20Bechdeltest.com.ipynb)
+- Maria Mouschoutzi,
+(https://datacream.substack.com/p/a-bechdel-test-analysis-of-science)
+
+I am going to try to follow Maria Mouschoutzi's approach and code to get the data. 
+All the credit goes to her!
+My goal is to analyze different aspects though - escpecially the romantic genre. 
