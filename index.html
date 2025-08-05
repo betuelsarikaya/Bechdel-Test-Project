@@ -1,204 +1,225 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>The Bechdel Test</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f5f4f1;
-            color: #4a4a4a;
-            line-height: 2;
-        }
-        .header-video-container {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-            border-bottom: none;
-        }
-        .header-video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(50%) brightness(1) saturate(100%);
-        }
-        .content {
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+<meta charset="UTF-8">
+<title>The Bechdel Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        a:link { 
-            color:darkslategray;
-        }
+    body {
+        font-family: 'Karla', sans-serif;
+        background: #ebe2db;
+        color: #222;
+        overflow-x: hidden;
+        line-height: 1.8;
+    }
 
-        a:hover { 
-            color:lightsteelblue
-        }
-        
-        h1 {
-            font-size: 3em;
-            font-weight: 700;
-            margin-top: 1em;
-            margin-bottom: 1em;
-            text-align: center;
-            color: #4a4a4a;
-        }
-        h2 {
-            font-size: 2em;
-            font-weight: 700;
-            margin-top: 2em;
-            margin-bottom: 0.5em;
-            text-align: center;
-            color: #4a4a4a;
-        }
-        p {
-            font-size: 1em;
-            margin-bottom: 1.5em;
-        }
-        iframe {
-            width: 100%;
-            border: none;
-            margin: 30px 0;
-        }
-        .article-image {
-            width: 100%;
-            height: auto;
-            margin: 30px 0;
-            filter: grayscale(10%) brightness(0.7);
-        
-        }
+    section {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 20px;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+        background: #ebe2db;
+    }
 
-        figcaption {
-            font-size: x-small;
-        }
+    section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
+    /* Intro with video background */
+    .intro {
+        position: relative;
+        color: #fff;
+        text-align: center;
+        z-index: 1;
+        background: #000;
+        overflow: hidden;
+    }
 
-        .video-container {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            padding-top: 56.25%;
-            margin-top: 30px;
-            border: 1px solid #000;
-        }
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(0%);
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            border-top: 1px solid #000;
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
+    .intro video {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: sepia(60%) saturate(60%) brightness(0.8) contrast(1.1);
+        z-index: -1;
+    }
 
-            h2 {
-                font-size: 1.5em;
-            }
-        }
-    </style>
+    .intro h1, .intro p {
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    h1, h2 {
+        font-family: 'Karla'; 
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2rem; margin-top: 20px; }
+
+    p {
+        max-width: 800px;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    a { color: #111; border-bottom: 1px solid #aaa; text-decoration: none; }
+    a:hover { border-bottom: 1px solid #000; }
+
+    
+    img.article-image {
+        max-width: min(60%, 800px);
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin: 20px auto;
+        display: block;
+    }
+
+    figcaption {
+        font-size: 0.8rem;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    iframe {
+        width: 100%;
+        max-width: 800px;
+        margin: 30px 0;
+        border: none;
+    }
+
+    footer {
+        background: #f9f9f9;
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        h1 { font-size: 2.2rem; }
+        h2 { font-size: 1.5rem; }
+        p { font-size: 1rem; }
+    }
+</style>
 </head>
 <body>
 
-<div class="header-video-container">
+<!-- INTRO -->
+<section class="intro">
     <video autoplay muted loop playsinline>
-        <source src="header-video.mp4" type="video/mp4">
+        <source src="header_video.mp4" type="video/mp4">
     </video>
-</div>
-
-<div class="content">
     <h1>The Bechdel Test</h1>
+    <p>A minimal lens to examine how women are represented in film. Scroll to explore.</p>
+</section>
 
-    <p>movies who pass are ... </p>
-    <p>
-        Dialogues
-    
-    </h2>
-  
-    <iframe width="560" height="315" 
-    src="https://www.youtube.com/embed/mt2qCjL6-n4?start=24&end=30" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-</iframe>
+<!-- SECTIONS -->
+<section>
+    <p>The Bechdel Test has become one of the most cited tools when it comes to discussing the representation of women in film. Its premise is quite simple:</p>
+    <p><strong>1.</strong> Are there at least two women in the film?</p>
+    <p><strong>2.</strong> Do they talk to each other?</p>
+    <p><strong>3.</strong> And is their conversation about something other than a man?</p>
+</section>
 
-    <iframe title="Genres" 
-            aria-label="Stacked Bars" 
-            id="datawrapper-chart-fkCHA" 
-            src="https://datawrapper.dwcdn.net/fkCHA/1/" 
-            scrolling="no" 
-            frameborder="0" style="width: 0; min-width: 100% !important; border: none;" 
-            height="967" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}})}();</script>
-    </iframe> 
+<section>
+    <img src="drawing-1.jpg" alt="Hand Drawing" class="article-image">
+</section>
 
-    <p>.</p>
-    
+<section>
+    <p>At first glance, these questions may seem trivial. But they reveal a persistent issue in storytelling: women often appear on screen only in relation to male characters. Passing the test does not require a film to be feminist, nor does failing it automatically make a film sexist. Rather, the Bechdel Test highlights patterns in the way women are written and how they exist within narratives.</p>
+    <p>The idea originated in the 1980s, when cartoonist Alison Bechdel, inspired by a suggestion from her friend Liz Wallace, introduced it in her comic strip <em>The Rule</em>.</p>
+</section>
 
-    <p> <a  </p>
-    
-   
-    <p> </p>
-   
-    <img src="image3-bg.jpg" alt="Beagle in New York City" class="article-image">
-    <figcaption>photo: Unsplash/Anthony Fomin</figcaption>
+<section>
+    <h2>Comic "The Rule"</h2>
+    <img src="the-rule.jpg" alt="The Rule" class="article-image">
+    <figcaption>Credit: Alison Bechdel</figcaption>
+</section>
 
-    <p></p>
+<section>
+    <p>What began as a commentary on Hollywood’s gender dynamics soon developed into a cultural reference point. Over time, feminist film critics popularized the test, and today it has even been adopted as an evaluation criterion: the Swedish Film Institute uses it as an indicator of diversity, while Eurimages, the European film fund, has factored it into its funding decisions.</p>
+    <p>Nevertheless, the Bechdel Test is not a quality seal. It does not measure narrative depth, artistic achievement, or progressive values. Instead, it provides a lens, sometimes an uncomfortable one, through which to examine how women are represented.</p>
+</section>
 
-    <p> </p>
+<section>
+    <img src="drawing-2.jpg" alt="Hand Drawing" class="article-image">
+</section>
 
-    <h2>Which movie passes the test?</h2>
-   
+<section>
+    <p>This simplicity is also its weakness. The test can give curious or even misleading results. Take, for instance, <em>The Lord of the Rings: The Two Towers</em>. In one of the trilogy’s few exchanges between female characters, the young Freda asks Éowyn, “Where is Mama?”, to which Éowyn responds, “Shhh.”</p>
+    <p>Technically, this fleeting moment allows the film to pass. Yet the fact that such a brief, almost inconsequential dialogue meets the criteria shows the limitations of the test.</p>
+</section>
 
-    <iframe 
-        title="Bechdel Test by movie" 
-        aria-label="Scatter Plot" 
-        id="datawrapper-chart-Hcrrt" 
-        src="https://datawrapper.dwcdn.net/Hcrrt/1/" 
-        scrolling="no" frameborder="0" 
-        style="width: 0; min-width: 100% !important; border: none;" height="474" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}})}();
-    </script>
-   
-    <img src="image-bg.jpg" alt="Chihuahua in Subway" class="article-image">
-    <figcaption>photo: Unsplash/Renting C</figcaption>
+<section>
+    <h2>Lord of The Rings Scene</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/mt2qCjL6-n4?start=24&end=30" allowfullscreen></iframe>
+</section>
 
-</div>
+<section>
+    <h2>How do films actually perform?</h2>
+    <p>Can this be measured? For this analysis, I used the <strong>Bechdel Test API</strong> along with ratings and information from <strong>IMDb</strong>. I followed the example by <a href="https://medium.com/@m.mouschoutzi/a-bechdel-test-analysis-of-science-fiction-cinema-using-plotly-e768691f3e29" target="_blank">Maria Mouschoutzi</a>, while focusing on different aspects. (Credit goes to her excellent work.)</p>
+    <p>The scatterplot chart below breaks down individual films into four categories:</p>
+    <ul style="max-width:800px; margin: 10px auto; line-height:1.6;">
+        <li>The film does not pass the Bechdel Test</li>
+        <li>Two women appear</li>
+        <li>They talk to each other</li>
+        <li>They talk about something other than a man</li>
+    </ul>
+</section>
 
-<script type="text/javascript">
-(function(){
-    "use strict";
-    window.addEventListener("message", function(event){
-        if (event.data["datawrapper-height"] !== undefined) {
-            var iframes = document.querySelectorAll("iframe");
-            for (var chartId in event.data["datawrapper-height"]) {
-                for (var i = 0, iframe; iframe = iframes[i]; i++) {
-                    if (iframe.contentWindow === event.source) {
-                        iframe.style.height = event.data["datawrapper-height"][chartId] + "px";
-                    }
-                }
-            }
-        }
+<section>
+    <h2>Which movies pass the test?</h2>
+    <iframe id="datawrapper-chart-Hcrrt" src="https://datawrapper.dwcdn.net/Hcrrt/1/" height="474"></iframe>
+</section>
+
+<section>
+    <h2>Let's look at Genres</h2>
+    <p>I was also curious how different movie genres perform when it comes to the Bechdel Test and I was honestly surprised. Believe it or not, horror films and romances actually do the best. Percentage-wise, they pass the test more often than other genres. Maybe it’s because romantic films tend to have more female characters, who then actually talk about something other than men. And in horror movies, it’s often a monster or some other threat that drives the plot. This is exactly what Alison Bechdel cynically pointed out in her original comic. Westerns, on the other hand, come out at the bottom. They fail the Bechdel Test more than any other genre.</p>
+</section>
+
+<section>
+<iframe title="Genres" 
+aria-label="Stacked Bars" 
+id="datawrapper-chart-fkCHA" 
+src="https://datawrapper.dwcdn.net/fkCHA/1/" 
+scrolling="no" 
+frameborder="0" style="width: 0; min-width: 70% !important; border: none;" 
+height="967" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}})}();</script>
+</iframe> 
+</section>
+
+<section>
+    <img src="drawing-3.jpg" alt="Hand Drawing" class="article-image">
+</section>
+
+<footer>
+    &copy; 2025 Bechdel Test Analysis Lede Project. All Rights Reserved.
+</footer>
+
+<script>
+/* Fade-In Scrollytelling */
+const sections = document.querySelectorAll("section");
+const options = { threshold: 0.2 };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
     });
-})();
+}, options);
+sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
